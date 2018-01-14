@@ -1,0 +1,24 @@
+<html>
+  <%= render_partial "base/head.html.erb" %>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 30vh;">
+        <div class="col-md-4 offset-md-4">
+          <form method="post" action="/base/index">
+            <fieldset>
+              <legend style="text-align:center;"><h1>Codebreaker App</legend>
+              <div class="form-group" style="margin-top: 5vh;">
+                <input class="form-control" id="name" name="name" placeholder="Your name">
+              </div>
+            </fieldset>
+            <div class="row" style="margin-top: 5vh;">
+              <div class="col-md-4 offset-md-4 text-center"> 
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Start</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

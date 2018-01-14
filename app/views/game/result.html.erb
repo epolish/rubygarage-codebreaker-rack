@@ -1,0 +1,36 @@
+<html>
+  <%= render_partial "base/head.html.erb" %>
+  <body>
+    <nav class="navbar">
+      <a href="/base/index" class="navbar-brand">To main page</a>
+    </nav>
+    <div class="container">
+      <div class="row" style="margin-top: 15vh;">
+        <div class="col text-center">
+          <h1>Codebreaker App</h1>
+          <br>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Player name</th>
+                <th scope="col">Tries</th>
+                <th scope="col">Hints requested</th>
+                <th scope="col">Answer</th>
+                <th scope="col">Win</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><%= @player.name %></th>
+                <td><%= @player.try_number %></td>
+                <td><%= @player.hint_count %></td>
+                <td><%= @player.secret_number %></td>
+                <td><%= @player.win? ? 'Yes' : 'No' %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

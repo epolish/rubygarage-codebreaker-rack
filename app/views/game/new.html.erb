@@ -1,0 +1,70 @@
+<% @player = @request.session[:player] %>
+<html>
+  <%= render_partial "base/head.html.erb" %>
+  <body>
+    <nav class="navbar">
+      <a href="/base/logout" class="navbar-brand">Logout (<%= @player.name %>)</a>
+      <% if is_admin %>
+        <a href="/game/statistics" class="navbar-brand">Statistics</a>
+      <% end %>
+    </nav>
+    <div class="container">
+      <div class="row" style="margin-top: 10vh;">
+        <div class="col-md-4 offset-md-4">
+          <form method="post" action="/game/new">
+            <fieldset>
+              <legend style="text-align:center;">
+                <h1>Codebreaker App</h1>
+                <h4>Guess code with number from 1 to 6</h4>
+              </legend>
+              <div class="form-group" style="margin-top: 5vh; text-align: center;">
+                <label for="guess_code">
+                  <input type="password" class="form-control" id="guess_code" name="guess_code" placeholder="* * * * *">
+                </label>
+              </div>
+              </fieldset>
+              <div class="row" style="margin-top: 5vh;">
+                <div class="col-md-6 text-center"> 
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+                  </div>
+                  <div class="col-md-6 text-center"> 
+                  <input type="submit" class="btn btn-primary btn-lg btn-block" value="Hint" name="hint">
+                </div>
+            </div>
+          </form>
+          <br/>
+          <div class="row text-center">
+            <div class="col">
+              <h4>Attempts: <%= @player.tries.count %>/7<h4>
+            </div>
+          </div>
+          <br/>
+          <div class="page-header row">
+            <div class="col">
+              <h1 id="tables">Attempts</h1>
+            </div>
+            <div class="col">
+              <h1 id="tables">Hint: <%= @player.answer %></h1>
+            </div>
+          </div>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Matching</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @player.tries.reverse.each do |try| %>
+              <tr>
+                <th scope="row"><%= try[:code] %></th>
+                <td><%= try[:matching] %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

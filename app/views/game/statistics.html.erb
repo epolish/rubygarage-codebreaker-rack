@@ -1,0 +1,41 @@
+<% @player = @request.session[:player] %>
+<html>
+  <%= render_partial "base/head.html.erb" %>
+  <body>
+    <nav class="navbar">
+      <a href="/game/new" class="navbar-brand">To game</a>
+    </nav>
+    <div class="container">
+      <div class="row" style="margin-top: 15vh;">
+        <div class="col text-center">
+          <h1>Codebreaker App</h1>
+          <br>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Player name</th>
+                <th scope="col">Tries</th>
+                <th scope="col">Hints requested</th>
+                <th scope="col">Answer</th>
+                <th scope="col">Win</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @storage_players.each do |storage_player| %>
+              <tr>
+                <th scope="row"><%= storage_player.name %></th>
+                <td><%= storage_player.try_number %></td>
+                <td><%= storage_player.hint_count %></td>
+                <td><%= storage_player.secret_number %></td>
+                <td><%= storage_player.is_win ? 'Yes' : 'No' %></td>
+                <td><%= DateTime.parse(storage_player.date).strftime('%A %d %b') %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
